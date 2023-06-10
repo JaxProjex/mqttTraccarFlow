@@ -1,0 +1,233 @@
+[
+    {
+        "id": "d7492b38fa3135cc",
+        "type": "tab",
+        "label": "mqttTraccarFlow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b4297cd91379de03",
+        "type": "mqtt out",
+        "z": "d7492b38fa3135cc",
+        "name": "",
+        "topic": "traccar/device1",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "951886331beda1f7",
+        "x": 560,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b271ff8ca13aa630",
+        "type": "mqtt in",
+        "z": "d7492b38fa3135cc",
+        "name": "",
+        "topic": "traccar/+",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "951886331beda1f7",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "b67341e525fe547c",
+                "55b453797b9f9f53"
+            ]
+        ]
+    },
+    {
+        "id": "60c0f31896e73e1c",
+        "type": "debug",
+        "z": "d7492b38fa3135cc",
+        "name": "debug 40",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "98fd18532fbb214b",
+        "type": "inject",
+        "z": "d7492b38fa3135cc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "traccar",
+        "payload": "{\"id\":\"4321\",\"name\":\"test-4321\",\"lat\":\"10.111\",\"lon\":\"30.333\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "b4297cd91379de03"
+            ]
+        ]
+    },
+    {
+        "id": "35f48a1356127c5a",
+        "type": "mqtt out",
+        "z": "d7492b38fa3135cc",
+        "name": "",
+        "topic": "traccar/device2",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "951886331beda1f7",
+        "x": 560,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "55b453797b9f9f53",
+        "type": "http request",
+        "z": "d7492b38fa3135cc",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://10.237.104.72:5055/?id={{{payload.id}}}&lat={{{payload.lat}}}&lon={{{payload.lon}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 990,
+        "y": 320,
+        "wires": [
+            [
+                "60c0f31896e73e1c"
+            ]
+        ]
+    },
+    {
+        "id": "b67341e525fe547c",
+        "type": "debug",
+        "z": "d7492b38fa3135cc",
+        "name": "debug 41",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "781009f812111151",
+        "type": "comment",
+        "z": "d7492b38fa3135cc",
+        "name": "Example 1",
+        "info": "format of msg.payload should be in JSON with \"uniqueId\", \"name\", \"lat\", \"lon\" key value pairs to pass.\ntopic should be traccar/*deviceNameOrIdentifier\n\nadd device in traccar server GUI, using the uniqueId and name that the MQTT client publishes.",
+        "x": 260,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5d3e5269f67c888b",
+        "type": "comment",
+        "z": "d7492b38fa3135cc",
+        "name": "Example 2",
+        "info": "format of msg.payload should be in JSON with \"uniqueId\", \"name\", \"lat\", \"lon\" key value pairs to pass.\ntopic should be traccar/*deviceNameOrIdentifier",
+        "x": 260,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "3e9339bdd5368c23",
+        "type": "inject",
+        "z": "d7492b38fa3135cc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "traccar",
+        "payload": "{\"id\":\"1234\",\"name\":\"1234\",\"lat\":\"20.222\",\"lon\":\"40.444\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 400,
+        "wires": [
+            [
+                "35f48a1356127c5a"
+            ]
+        ]
+    },
+    {
+        "id": "951886331beda1f7",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "10.237.104.23",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
