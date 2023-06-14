@@ -1,2 +1,2 @@
 # mqttTraccarFlow
-node red flow to forward gps location from a mqtt pub sensor to traccar server
+Node-Red Flow to forward MQTT sensor location to Traccar Server. MQTT sensor must be added as a Traccar Client in Devices through the Traccar Server Web GUI.
