@@ -5,17 +5,17 @@ Node-Red Flow to forward MQTT sensor location to Traccar Server. MQTT sensor mus
 
 MQTT PUB PAYLOAD EXAMPLE (JSON):
 
-{
+    {
 
-    "id": "1234",
+        "id": "1234",
     
-    "name": "test-1234",
+        "name": "test-1234",
     
-    "lat": "20.2020",
+        "lat": "20.2020",
     
-    "lon": "40.4040"
+        "lon": "40.4040"
     
-}
+    }
 
 -------------------------------------------
 
