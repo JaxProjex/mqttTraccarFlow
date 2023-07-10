@@ -3,6 +3,26 @@ Node-Red Flow to forward MQTT sensor location to Traccar Server. MQTT sensor mus
 
 ![traccar flow](/mqttTraccarFlow.png?raw=true "Node Red Flow")
 
+SETUP NODE-RED:
+
+-https://nodered.org/docs/getting-started/
+
+-options include installing node-red on your local PC, a Raspberry Pi or similar single board computer or mini PC, deploying node-red on a cloud server or virtual private server (VPS), Docker Container, or local virtual environment. After installing node-red you should be able to go to the node-red dashboard at http://node-red-ip-address:1880 you may have to open appropriate ports (1880) to allow devices to access the node-red dashboard.
+
+----------------------------------------------
+
+IMPORT .JSON FLOW TO NODE RED:
+
+-in GitHub: click on "mqttTraccarFlow.json" > click on the download icon "Download raw file" > note where the "mqttTraccarFlow.json" file downloaded to, default is in your Downloads folder.
+
+-in Node-Red: click on menu icon (3 horizontal lines top right) > click on "Import" > click on "select a file to import" > go to Downloads folder and click on "mqttTraccarFlow.json" > Upload > Import
+
+ALTERNATIVELY..
+
+-you can just copy the whole "mqttTraccarFlow.json" code from GitHub and paste it into the Node-Red Import Clipboard.
+
+-----------------------------------------------
+
 MQTT PUB PAYLOAD EXAMPLE (JSON):
 
     {
@@ -21,7 +41,7 @@ MQTT PUB PAYLOAD EXAMPLE (JSON):
 
 MQTT PUB PAYLOAD:
 
--the "id" key gets used as the UniqueID for Traccar Clients to add devices to Traccar Server. Use this id to input when adding Traccar Devices by UniqueID.
+-the "id" key gets used as the Identifier/UniqueID for Traccar Clients to add devices to Traccar Server. Use this id to input when adding Traccar Devices by Identifier/UniqueID.
 
 -the "name" key gets used as the name of the Traccar Client device on the Traccar Server.
 
@@ -48,3 +68,10 @@ ADDING DEVICE TO TRACCAR SERVER:
 -when your mqtt device sends its position payload it should then populate on your traccar server, you can use the example mqtt devices in the flow to test.
 
 -------------------------------------------------
+
+TROUBLESHOOTING / KNOWN ISSUES:
+
+-in the event the Node-Red service explodes and you lose connection to the Node-Red UI and cant reconnect, you may need to restart your Node-Red service
+
+$ sudo service node-red restart
+
